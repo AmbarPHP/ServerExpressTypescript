@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv/config");
 const mongoose_1 = require("mongoose");
+(0, mongoose_1.set)('strictQuery', false);
 function dbConnect() {
     return __awaiter(this, void 0, void 0, function* () {
         const DB_URI = process.env.DB_URI;

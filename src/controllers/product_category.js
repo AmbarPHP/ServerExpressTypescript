@@ -9,39 +9,38 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteItem = exports.postItem = exports.updateItem = exports.getItems = exports.getItem = void 0;
-const error_handle_1 = require("../utils/error.handle");
-const items_1 = require("../service/items");
+exports.deleteItem = exports.postItem = exports.updateItem = exports.getProductos = exports.getProductById = void 0;
+const productCategory_1 = require("../service/productCategory");
 //leemos el controlador 
-const getItems = ({ body }, resp) => __awaiter(void 0, void 0, void 0, function* () {
+const getProductos = ({ body }, resp) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const response = yield (0, items_1.getAllItems)();
+        const response = yield (0, productCategory_1.getAllProductos)();
         resp.send(response);
     }
     catch (error) {
-        (0, error_handle_1.handleHtttp)(resp, "ERROR_GET_ALL_ITEMS", error);
+        // handleHtttp( resp,"ERROR_GET_ALL_Productos", error);
     }
 });
-exports.getItems = getItems;
-const getItem = (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getProductos = getProductos;
+const getProductById = (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const response = yield (0, items_1.getOneItem)();
+        const response = yield (0, productCategory_1.getOneProduct)(req.params.id);
+        ///resp.send("GETTING_DATA_ONE");
         resp.send(response);
-        //resp.send("GETTING_DATA_ONE");
     }
     catch (error) {
-        (0, error_handle_1.handleHtttp)(resp, "ERROR_GET_ONE_ITEMS", error);
+        //handleHtttp(resp, "ERROR_GET_ONE_ITEMS", error);
     }
 });
-exports.getItem = getItem;
+exports.getProductById = getProductById;
 const postItem = (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const respuesta = yield (0, items_1.inserItem)(req.body);
-        resp.send("la respuesta: " + respuesta);
+        const respuesta = yield (0, productCategory_1.inserProductCategory)(req.body);
+        //resp.send("la respuesta: "+respuesta);
         console.log("se creo un post");
     }
     catch (error) {
-        (0, error_handle_1.handleHtttp)(resp, "ERROR_POST_ITEMS", error);
+        //handleHtttp(resp, "ERROR_POST_ITEMS", error);
     }
 });
 exports.postItem = postItem;
