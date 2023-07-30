@@ -15,6 +15,4 @@ const productCategorySchema = new Schema<IProductCategory>(
 
 //dos parametros <nombre del schema en la base de datos, definicion del schema>
 const ProductCategory = model("product_categories", productCategorySchema);
-
-
 export default ProductCategory;

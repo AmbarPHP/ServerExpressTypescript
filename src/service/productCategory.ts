@@ -16,8 +16,9 @@ const getAllProductos = async()=>{
     
 }
 
-const getOneProduct = async (id:string)=>{
-    const responseItem= await ProductCategory.find({"subcategories.name":id})
+const getOneProduct = async (id: number) => {
+    
+    const responseItem= await ProductCategory.find({"subcategories.id":id})
     return responseItem;
 }
 

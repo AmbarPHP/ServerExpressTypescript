@@ -9,22 +9,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteItem = exports.postItem = exports.updateItem = exports.getProductos = exports.getProductById = void 0;
-const productCategory_1 = require("../service/productCategory");
+exports.deleteItem = exports.postUser = exports.updateUser = exports.getUsers = exports.getUserById = void 0;
+const express_1 = require("express");
+const user_1 = require("../service/user");
 //leemos el controlador 
-const getProductos = ({ body }, resp) => __awaiter(void 0, void 0, void 0, function* () {
+const getUsers = ({ body }, resp) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const response = yield (0, productCategory_1.getAllProductos)();
+        const response = yield (0, user_1.getAllUsers)();
+        //resp.send("GETTING_DATA_users");
         resp.send(response);
     }
     catch (error) {
-        // handleHtttp( resp,"ERROR_GET_ALL_Productos", error);
+        express_1.response.status(500);
+        express_1.response.send({ error: error });
     }
 });
-exports.getProductos = getProductos;
-const getProductById = (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getUsers = getUsers;
+const getUserById = (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const response = yield (0, productCategory_1.getOneProduct)(parseInt(req.params.id));
+        const response = yield (0, user_1.getOneUser)(parseInt(req.params.id));
         //resp.send("GETTING_DATA_ONE");
         resp.send(response);
     }
@@ -32,19 +35,22 @@ const getProductById = (req, resp) => __awaiter(void 0, void 0, void 0, function
         //handleHtttp(resp, "ERROR_GET_ONE_ITEMS", error);
     }
 });
-exports.getProductById = getProductById;
-const postItem = (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getUserById = getUserById;
+const postUser = (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const respuesta = yield (0, productCategory_1.inserProductCategory)(req.body);
-        //resp.send("la respuesta: "+respuesta);
-        console.log("se creo un post");
+        const data = req.body; // Obtenemos los datos enviados en el cuerpo de la solicitud
+        resp.json({ message: 'Datos recibidos correctamente', data });
+        console.log("console body ", data);
+        resp.send("el send body: " + data);
+        // const respuesta= await insertUser(req.body);
     }
     catch (error) {
+        console.log(error);
         //handleHtttp(resp, "ERROR_POST_ITEMS", error);
     }
 });
-exports.postItem = postItem;
-const updateItem = (req, resp) => {
+exports.postUser = postUser;
+const updateUser = (req, resp) => {
     try {
         resp.send("UPDATE_DATA");
     }
@@ -52,7 +58,7 @@ const updateItem = (req, resp) => {
         resp.status(500).send('Something broke!');
     }
 };
-exports.updateItem = updateItem;
+exports.updateUser = updateUser;
 const deleteItem = (req, resp) => {
     try {
         resp.send("DATA_DELETE");

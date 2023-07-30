@@ -12,23 +12,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getOneProduct = exports.getAllProductos = exports.inserProductCategory = void 0;
+exports.getOneUser = exports.getAllUsers = exports.insertUser = void 0;
 //importamos el model para usar el objeto 
-const productCategory_model_1 = __importDefault(require("../models/productCategory.model"));
-const inserProductCategory = (item) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(item);
-    const responseItem = yield productCategory_model_1.default.create(item);
+const user_model_1 = __importDefault(require("../models/user.model"));
+const insertUser = (item) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("llega el payload:", item);
+    const responseItem = yield user_model_1.default.create(item);
     return responseItem;
 });
-exports.inserProductCategory = inserProductCategory;
-const getAllProductos = () => __awaiter(void 0, void 0, void 0, function* () {
-    const responseItem = yield productCategory_model_1.default.find({});
-    //console.log("Busco la razon por la cual no me regresa datos",responseItem);
+exports.insertUser = insertUser;
+const getAllUsers = () => __awaiter(void 0, void 0, void 0, function* () {
+    // const responseItem = { hola: "hola" };
+    // return responseItem;
+    const responseItem = yield user_model_1.default.find({});
+    //return "NADA";
+    console.log(responseItem);
     return responseItem;
 });
-exports.getAllProductos = getAllProductos;
-const getOneProduct = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const responseItem = yield productCategory_model_1.default.find({ "subcategories.id": id });
+exports.getAllUsers = getAllUsers;
+const getOneUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const responseItem = yield user_model_1.default.find({ "id": id });
     return responseItem;
 });
-exports.getOneProduct = getOneProduct;
+exports.getOneUser = getOneUser;

@@ -15,8 +15,8 @@ const getProductos =async ({body}:Request, resp:Response)=>{
 }
 const getProductById = async (req:Request, resp:Response)=>{
     try {
-        const response= await getOneProduct(req.params.id);
-        ///resp.send("GETTING_DATA_ONE");
+        const response= await getOneProduct(parseInt(req.params.id));
+        //resp.send("GETTING_DATA_ONE");
          resp.send(response);
        
     } catch (error) {

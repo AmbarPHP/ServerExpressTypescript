@@ -4,9 +4,9 @@ const router = Router();
 
 // http://localhost:3002/items [GET]
 
-// router.get("/items", (req:Request, resp: Response)=>{
-//     resp.send({data: "All data")
-// });
+router.get("/items", (req:Request, resp: Response)=>{
+    resp.send({ data: "All data"});
+});
 router.get("/products", getProductos);
 router.get("/product/:id", getProductById);
 // router.post("/item", postItem);
