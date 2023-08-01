@@ -7,4 +7,8 @@ const router_users = (0, express_1.Router)();
 exports.router_users = router_users;
 router_users.get("/users", user_1.getUsers);
 router_users.get("/user/:id", user_1.getUserById);
-router_users.post("/user", user_1.postUser);
+router_users.post("/user", (req, res, next) => {
+    console.log(req.body);
+    res.json(req.body);
+});
+router_users.put("/item:id", user_1.updateUser);

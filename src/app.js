@@ -19,9 +19,9 @@ app.use(items_1.router);
 app.use(users_1.router_users);
 app.use((0, cors_1.default)());
 app.use(body_parser_1.default.json());
-app.use(body_parser_1.default.urlencoded({ extended: false }));
+app.use(body_parser_1.default.urlencoded({ extended: true }));
 //:::::::::::::::CONTROLLERS ::::::::::::::::::::::::::
-app.use(express_1.default.json());
+// app.use(express.json());
 //MONGO_ejecutamos la conexion
 (0, mongo_1.default)().then(() => { console.log("conexion ready"); });
 app.listen(PORT, () => console.log(`listen in port ${PORT}`));

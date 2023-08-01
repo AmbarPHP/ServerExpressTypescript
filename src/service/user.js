@@ -16,7 +16,7 @@ exports.getOneUser = exports.getAllUsers = exports.insertUser = void 0;
 //importamos el model para usar el objeto 
 const user_model_1 = __importDefault(require("../models/user.model"));
 const insertUser = (item) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("llega el payload:", item);
+    //console.log("no llega el payload:",item);
     const responseItem = yield user_model_1.default.create(item);
     return responseItem;
 });

@@ -3,7 +3,7 @@ import {IUser} from "../interfaces/user.interface";
 import UserModel from "../models/user.model";
 
 const insertUser = async(item:IUser)=>{
-    console.log("llega el payload:",item);
+    //console.log("no llega el payload:",item);
     const responseItem= await UserModel.create(item);
     return responseItem;
 }

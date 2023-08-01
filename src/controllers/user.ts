@@ -1,4 +1,4 @@
-import { Request, Response, response } from "express"
+import { NextFunction, Request, Response} from "express"
 import { handleHtttp } from "../utils/error.handle";
 import {insertUser, getAllUsers, getOneUser} from "../service/user";
 
@@ -12,10 +12,12 @@ const getUsers =async ({body}:Request, resp:Response)=>{
         resp.send(response);
     }
     catch (error) {
-        response.status(500);
-    response.send({error:error}); 
+        resp.status(500);
+    resp.send({error:error}); 
     }
 }
+
+
 const getUserById = async (req:Request, resp:Response)=>{
     try {
         const response= await getOneUser(parseInt(req.params.id));
@@ -27,15 +29,15 @@ const getUserById = async (req:Request, resp:Response)=>{
     }
 }
 
-const postUser = async (req:Request, resp:Response)=>{
+const postUser1 = async (req:Request, resp:Response)=>{
     try {
 
         const data = req.body; // Obtenemos los datos enviados en el cuerpo de la solicitud
 
-  resp.json({ message: 'Datos recibidos correctamente', data });
+        resp.json(data);
 
          console.log("console body ", data);
-        resp.send("el send body: "+data);
+        //resp.send("el send body: "+data);
        // const respuesta= await insertUser(req.body);
         
        
@@ -44,6 +46,22 @@ const postUser = async (req:Request, resp:Response)=>{
         //handleHtttp(resp, "ERROR_POST_ITEMS", error);
     }
 }
+
+
+const postUser = async (req: Request, resp: Response) => {
+    try {
+        
+          const response = await insertUser(req.body);
+        //resp.send("GETTING_DATA_users");
+        resp.send(response);
+ 
+    } catch (error) {
+        console.log("la respuesta es error");
+        const { id, name } = req.body;
+             console.log("Request Body: ",id,"name: ",name);
+    resp.status(500).send({ error: error });
+  }
+};
 
 const updateUser=(req:Request, resp: Response)=>{
     try {
